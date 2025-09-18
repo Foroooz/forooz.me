@@ -1,10 +1,101 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Code, Globe, Gamepad2, Mail, Github, Linkedin, ExternalLink, User } from 'lucide-react';
 
 const ForoozMinimal = () => {
   const [projectsCompleted] = useState(12);
   const [yearsExperience] = useState(5);
-  const [skillProgress] = useState(85); // 85% skill level
+  const [skillProgress] = useState(85);
+
+  // SEO: Set document title and meta description
+  useEffect(() => {
+    document.title = "Forooz - Full-Stack Developer | WordPress Expert | Game Creator";
+    
+    // Create or update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.name = 'description';
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = "Forooz - Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation. 5+ years experience building digital solutions.";
+
+    // Add canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://forooz.me';
+
+    // Add Open Graph meta tags
+    const ogTags = [
+      { property: 'og:title', content: 'Forooz - Full-Stack Developer | WordPress Expert' },
+      { property: 'og:description', content: 'Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation. Contact Forooz for your next project.' },
+      { property: 'og:url', content: 'https://forooz.me' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Forooz.Me' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Forooz - Full-Stack Developer' },
+      { name: 'twitter:description', content: 'Expert WordPress developer and full-stack engineer. Building exceptional digital experiences.' }
+    ];
+
+    ogTags.forEach(tag => {
+      let meta = document.querySelector(`meta[${tag.property ? 'property' : 'name'}="${tag.property || tag.name}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (tag.property) meta.setAttribute('property', tag.property);
+        if (tag.name) meta.setAttribute('name', tag.name);
+        document.head.appendChild(meta);
+      }
+      meta.content = tag.content;
+    });
+
+    // Add structured data (JSON-LD)
+    let structuredData = document.querySelector('script[type="application/ld+json"]');
+    if (!structuredData) {
+      structuredData = document.createElement('script');
+      structuredData.type = 'application/ld+json';
+      document.head.appendChild(structuredData);
+    }
+    
+    structuredData.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Forooz",
+      "url": "https://forooz.me",
+      "sameAs": [
+        "https://github.com/forooz",
+        "https://linkedin.com/in/forooz"
+      ],
+      "jobTitle": "Full-Stack Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Forooz.Me"
+      },
+      "knowsAbout": [
+        "WordPress Development",
+        "Full-Stack Development", 
+        "Web Applications",
+        "Game Development",
+        "React",
+        "Node.js",
+        "PHP"
+      ],
+      "email": "hello@forooz.me",
+      "description": "Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation with 5+ years of experience."
+    });
+
+    // Add keywords meta tag
+    let keywords = document.querySelector('meta[name="keywords"]');
+    if (!keywords) {
+      keywords = document.createElement('meta');
+      keywords.name = 'keywords';
+      document.head.appendChild(keywords);
+    }
+    keywords.content = "Forooz, Forooz developer, WordPress developer, full-stack developer, web development, game development, React developer, PHP developer, Node.js";
+
+  }, []);
 
   const styles = {
     container: {
@@ -146,7 +237,8 @@ const ForoozMinimal = () => {
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       backgroundColor: '#f0f0f0',
-      color: '#666666'
+      color: '#666666',
+      textDecoration: 'none'
     },
 
     socialIconActive: {
@@ -161,22 +253,16 @@ const ForoozMinimal = () => {
       marginLeft: '12px'
     },
 
-    // Mobile responsive
-    '@media (max-width: 640px)': {
-      container: {
-        padding: '20px'
-      },
-      grid: {
-        gridTemplateColumns: '1fr',
-        gap: '16px'
-      },
-      card: {
-        padding: '24px'
-      },
-      cardLarge: {
-        gridColumn: 'span 1',
-        padding: '24px'
-      }
+    srOnly: {
+      position: 'absolute',
+      width: '1px',
+      height: '1px',
+      padding: 0,
+      margin: '-1px',
+      overflow: 'hidden',
+      clip: 'rect(0, 0, 0, 0)',
+      whiteSpace: 'nowrap',
+      border: 0
     }
   };
 
@@ -189,10 +275,10 @@ const ForoozMinimal = () => {
         window.open('mailto:hello@forooz.me', '_blank');
         break;
       case 'github':
-        window.open('https://github.com', '_blank');
+        window.open('https://github.com/forooz', '_blank');
         break;
       case 'linkedin':
-        window.open('https://linkedin.com', '_blank');
+        window.open('https://linkedin.com/in/forooz', '_blank');
         break;
       default:
         break;
@@ -201,136 +287,166 @@ const ForoozMinimal = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.grid}>
-        {/* WordPress Development Card */}
-        <div 
-          style={styles.card}
-          onClick={() => handleCardClick('portfolio')}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
-          <div style={styles.iconContainer}>
-            <Globe size={24} />
-          </div>
-          <h3 style={styles.cardTitle}>WordPress Development</h3>
-          <p style={styles.cardSubtitle}>Custom themes & plugins</p>
+      {/* SEO: Hidden H1 for main keyword */}
+      <h1 style={styles.srOnly}>Forooz - Expert Full-Stack Developer and WordPress Specialist</h1>
+      
+      {/* SEO: Structured content with proper headings */}
+      <header role="banner">
+        <div style={styles.srOnly}>
+          <p>Welcome to Forooz.Me - Your trusted partner for WordPress development, web applications, and game creation.</p>
         </div>
+      </header>
 
-        {/* Contact Card */}
-        <div 
-          style={styles.card}
-          onClick={() => handleCardClick('contact')}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
-          <div style={styles.iconContainer}>
-            <Mail size={24} />
-          </div>
-          <h3 style={styles.cardTitle}>Get in touch</h3>
-          <p style={styles.cardSubtitle}>hello@forooz.me</p>
-        </div>
-      </div>
-
-      {/* About Me Card */}
-      <div style={styles.cardLarge}>
-        <div style={{display: 'flex', alignItems: 'center', marginBottom: '24px'}}>
-          <div style={{
-            width: '48px',
-            height: '48px',
-            backgroundColor: '#333333',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginRight: '16px',
-            color: 'white'
-          }}>
-            <User size={20} />
-          </div>
-          <div>
-            <h2 style={{
-              fontSize: '24px',
-              fontWeight: '600',
-              color: '#333333',
-              margin: 0,
-              lineHeight: '1.2'
-            }}>Full-Stack Developer</h2>
-            <p style={{
-              fontSize: '14px',
-              color: '#999999',
-              margin: 0
-            }}>Building digital experiences</p>
-          </div>
-        </div>
-
-        <div style={styles.progressContainer}>
-          <div style={styles.progressHeader}>
-            <span style={styles.progressLabel}>Skill Level</span>
-            <span style={styles.progressValue}>Expert</span>
-          </div>
-          <div style={styles.progressBar}>
-            <div style={styles.progressFill}></div>
-          </div>
-        </div>
-      </div>
-
-      {/* Experience & Portfolio Card - Full Width Row */}
-      <div style={styles.cardLarge}>
-        <div style={styles.statsContainer}>
-          <div>
-            <h2 style={styles.statsText}>{yearsExperience} years experience</h2>
-            <p style={styles.statsSubtext}>{projectsCompleted} projects completed</p>
-          </div>
-          <div style={{
-            width: '48px',
-            height: '48px',
-            color: '#cccccc'
-          }}>
-            <Code size={48} />
-          </div>
-        </div>
-
-        <div style={styles.socialContainer}>
-          <div
-            style={{...styles.socialIcon, ...styles.socialIconActive}}
-            onClick={() => handleCardClick('github')}
-          >
-            <Github size={20} />
-          </div>
-          <div
-            style={{...styles.socialIcon, ...styles.socialIconActive}}
-            onClick={() => handleCardClick('linkedin')}
-          >
-            <Linkedin size={20} />
-          </div>
-          <div
-            style={styles.socialIcon}
+      <main role="main" aria-label="Forooz Portfolio Content">
+        <div style={styles.grid}>
+          {/* WordPress Development Card */}
+          <article 
+            style={styles.card}
             onClick={() => handleCardClick('portfolio')}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            aria-label="WordPress Development Services by Forooz"
+            role="button"
+            tabIndex={0}
           >
-            <ExternalLink size={20} />
-          </div>
-          <span style={styles.contactText}>Connect</span>
-        </div>
-      </div>
+            <div style={styles.iconContainer} aria-hidden="true">
+              <Globe size={24} />
+            </div>
+            <h2 style={styles.cardTitle}>WordPress Development</h2>
+            <p style={styles.cardSubtitle}>Custom themes & plugins by Forooz</p>
+          </article>
 
-      {/* Skills Grid */}
-      <div style={{...styles.grid, marginTop: '20px'}}>
-        <div style={styles.card}>
-          <div style={styles.iconContainer}>
-            <Code size={24} />
-          </div>
-          <h3 style={styles.cardTitle}>Web Applications</h3>
-          <p style={styles.cardSubtitle}>React • Node.js • PHP</p>
+          {/* Contact Card */}
+          <article 
+            style={styles.card}
+            onClick={() => handleCardClick('contact')}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            aria-label="Contact Forooz"
+            role="button"
+            tabIndex={0}
+          >
+            <div style={styles.iconContainer} aria-hidden="true">
+              <Mail size={24} />
+            </div>
+            <h2 style={styles.cardTitle}>Contact Forooz</h2>
+            <p style={styles.cardSubtitle}>hello@forooz.me</p>
+          </article>
         </div>
 
-        <div style={styles.card}>
-          <div style={styles.iconContainer}>
-            <Gamepad2 size={24} />
+        {/* About Forooz Card */}
+        <section style={styles.cardLarge} aria-label="About Forooz">
+          <div style={{display: 'flex', alignItems: 'center', marginBottom: '24px'}}>
+            <div style={{
+              width: '48px',
+              height: '48px',
+              backgroundColor: '#333333',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '16px',
+              color: 'white'
+            }} aria-hidden="true">
+              <User size={20} />
+            </div>
+            <div>
+              <h2 style={{
+                fontSize: '24px',
+                fontWeight: '600',
+                color: '#333333',
+                margin: 0,
+                lineHeight: '1.2'
+              }}>Forooz - Full-Stack Developer</h2>
+              <p style={{
+                fontSize: '14px',
+                color: '#999999',
+                margin: 0
+              }}>Building exceptional digital experiences</p>
+            </div>
           </div>
-          <h3 style={styles.cardTitle}>Game Development</h3>
-          <p style={styles.cardSubtitle}>HTML5 Canvas • JavaScript</p>
-        </div>
-      </div>
+
+          <div style={styles.progressContainer}>
+            <div style={styles.progressHeader}>
+              <span style={styles.progressLabel}>Forooz's Skill Level</span>
+              <span style={styles.progressValue}>Expert Developer</span>
+            </div>
+            <div style={styles.progressBar} role="progressbar" aria-valuenow={skillProgress} aria-valuemin={0} aria-valuemax={100} aria-label="Forooz skill level progress">
+              <div style={styles.progressFill}></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Forooz Experience Card */}
+        <section style={styles.cardLarge} aria-label="Forooz Experience and Social Links">
+          <div style={styles.statsContainer}>
+            <div>
+              <h2 style={styles.statsText}>{yearsExperience} years experience</h2>
+              <p style={styles.statsSubtext}>{projectsCompleted} projects completed by Forooz</p>
+            </div>
+            <div style={{
+              width: '48px',
+              height: '48px',
+              color: '#cccccc'
+            }} aria-hidden="true">
+              <Code size={48} />
+            </div>
+          </div>
+
+          <nav style={styles.socialContainer} aria-label="Connect with Forooz on social media">
+            <a
+              href="https://github.com/forooz"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{...styles.socialIcon, ...styles.socialIconActive}}
+              aria-label="Forooz on GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href="https://linkedin.com/in/forooz"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{...styles.socialIcon, ...styles.socialIconActive}}
+              aria-label="Forooz on LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a
+              href="#portfolio"
+              style={styles.socialIcon}
+              aria-label="View Forooz Portfolio"
+            >
+              <ExternalLink size={20} />
+            </a>
+            <span style={styles.contactText}>Connect with Forooz</span>
+          </nav>
+        </section>
+
+        {/* Forooz Skills Grid */}
+        <section style={{...styles.grid, marginTop: '20px'}} aria-label="Forooz Technical Skills">
+          <article style={styles.card} aria-label="Forooz Web Application Development">
+            <div style={styles.iconContainer} aria-hidden="true">
+              <Code size={24} />
+            </div>
+            <h3 style={styles.cardTitle}>Web Applications by Forooz</h3>
+            <p style={styles.cardSubtitle}>React • Node.js • PHP</p>
+          </article>
+
+          <article style={styles.card} aria-label="Forooz Game Development">
+            <div style={styles.iconContainer} aria-hidden="true">
+              <Gamepad2 size={24} />
+            </div>
+            <h3 style={styles.cardTitle}>Game Development by Forooz</h3>
+            <p style={styles.cardSubtitle}>HTML5 Canvas • JavaScript</p>
+          </article>
+        </section>
+      </main>
+
+      {/* SEO: Footer with additional context */}
+      <footer role="contentinfo" style={styles.srOnly}>
+        <p>© 2024 Forooz.Me - Professional WordPress Developer and Full-Stack Engineer. Specializing in custom web development, WordPress themes, plugins, web applications, and game development. Contact Forooz for your next project at hello@forooz.me</p>
+      </footer>
 
       <style>{`
         * {
