@@ -38,7 +38,10 @@ const ForoozMinimal = () => {
       borderRadius: '24px',
       padding: '32px',
       boxShadow: '0 2px 20px rgba(0, 0, 0, 0.08)',
-      marginTop: '20px'
+      marginTop: '20px',
+      maxWidth: '600px',
+      width: '100%',
+      margin: '20px auto 0 auto'
     },
 
     iconContainer: {
@@ -54,15 +57,15 @@ const ForoozMinimal = () => {
     },
 
     cardTitle: {
-      fontSize: '22px',
-      fontWeight: '600',
+      fontSize: '18px',
+      fontWeight: '500',
       color: '#333333',
       marginBottom: '8px',
       lineHeight: '1.2'
     },
 
     cardSubtitle: {
-      fontSize: '16px',
+      fontSize: '14px',
       color: '#999999',
       fontWeight: '400',
       margin: 0
@@ -80,14 +83,14 @@ const ForoozMinimal = () => {
     },
 
     progressLabel: {
-      fontSize: '18px',
-      fontWeight: '600',
+      fontSize: '16px',
+      fontWeight: '500',
       color: '#333333'
     },
 
     progressValue: {
-      fontSize: '18px',
-      fontWeight: '600',
+      fontSize: '16px',
+      fontWeight: '500',
       color: '#333333'
     },
 
@@ -115,14 +118,14 @@ const ForoozMinimal = () => {
     },
 
     statsText: {
-      fontSize: '32px',
-      fontWeight: '700',
+      fontSize: '26px',
+      fontWeight: '600',
       color: '#333333',
       margin: 0
     },
 
     statsSubtext: {
-      fontSize: '16px',
+      fontSize: '14px',
       color: '#999999',
       margin: 0
     },
@@ -152,8 +155,8 @@ const ForoozMinimal = () => {
     },
 
     contactText: {
-      fontSize: '18px',
-      fontWeight: '600',
+      fontSize: '16px',
+      fontWeight: '500',
       color: '#333333',
       marginLeft: '12px'
     },
@@ -246,14 +249,14 @@ const ForoozMinimal = () => {
           </div>
           <div>
             <h2 style={{
-              fontSize: '28px',
-              fontWeight: '700',
+              fontSize: '24px',
+              fontWeight: '600',
               color: '#333333',
               margin: 0,
               lineHeight: '1.2'
             }}>Full-Stack Developer</h2>
             <p style={{
-              fontSize: '16px',
+              fontSize: '14px',
               color: '#999999',
               margin: 0
             }}>Building digital experiences</p>
