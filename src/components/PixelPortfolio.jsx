@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code, Globe, Gamepad2, Mail, Github, Linkedin, ExternalLink, User } from 'lucide-react';
+import { Code, Globe, Gamepad2, User, Github, Linkedin, ExternalLink, Send } from 'lucide-react';
 
 const ForoozMinimal = () => {
   const [projectsCompleted] = useState(12);
@@ -65,8 +65,8 @@ const ForoozMinimal = () => {
       "name": "Forooz",
       "url": "https://forooz.me",
       "sameAs": [
-        "https://github.com/forooz",
-        "https://linkedin.com/in/forooz"
+        "https://github.com/Foroooz",
+        "https://www.linkedin.com/in/forooz/"
       ],
       "jobTitle": "Full-Stack Developer",
       "worksFor": {
@@ -82,7 +82,7 @@ const ForoozMinimal = () => {
         "Node.js",
         "PHP"
       ],
-      "email": "hello@forooz.me",
+      "email": "@foroozd",
       "description": "Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation with 5+ years of experience."
     });
 
@@ -93,7 +93,7 @@ const ForoozMinimal = () => {
       keywords.name = 'keywords';
       document.head.appendChild(keywords);
     }
-    keywords.content = "Forooz, Forooz developer, WordPress developer, full-stack developer, web development, game development, React developer, PHP developer, Node.js";
+    keywords.content = "Forooz, Forooz developer, WordPress developer, full-stack developer, web development, game development, React developer, PHP developer, Node.js, @foroozd telegram";
 
   }, []);
 
@@ -272,13 +272,13 @@ const ForoozMinimal = () => {
         window.open('#portfolio', '_self');
         break;
       case 'contact':
-        window.open('mailto:hello@forooz.me', '_blank');
+        window.open('https://t.me/foroozd', '_blank');
         break;
       case 'github':
-        window.open('https://github.com/forooz', '_blank');
+        window.open('https://github.com/Foroooz', '_blank');
         break;
       case 'linkedin':
-        window.open('https://linkedin.com/in/forooz', '_blank');
+        window.open('https://www.linkedin.com/in/forooz/', '_blank');
         break;
       default:
         break;
@@ -327,10 +327,10 @@ const ForoozMinimal = () => {
             tabIndex={0}
           >
             <div style={styles.iconContainer} aria-hidden="true">
-              <Mail size={24} />
+              <Send size={24} />
             </div>
             <h2 style={styles.cardTitle}>Contact Forooz</h2>
-            <p style={styles.cardSubtitle}>hello@forooz.me</p>
+            <p style={styles.cardSubtitle}>@foroozd</p>
           </article>
         </div>
 
@@ -395,7 +395,7 @@ const ForoozMinimal = () => {
 
           <nav style={styles.socialContainer} aria-label="Connect with Forooz on social media">
             <a
-              href="https://github.com/forooz"
+              href="https://github.com/Foroooz"
               target="_blank"
               rel="noopener noreferrer"
               style={{...styles.socialIcon, ...styles.socialIconActive}}
@@ -404,7 +404,7 @@ const ForoozMinimal = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/forooz"
+              href="https://www.linkedin.com/in/forooz/"
               target="_blank"
               rel="noopener noreferrer"
               style={{...styles.socialIcon, ...styles.socialIconActive}}
@@ -445,7 +445,7 @@ const ForoozMinimal = () => {
 
       {/* SEO: Footer with additional context */}
       <footer role="contentinfo" style={styles.srOnly}>
-        <p>© 2024 Forooz.Me - Professional WordPress Developer and Full-Stack Engineer. Specializing in custom web development, WordPress themes, plugins, web applications, and game development. Contact Forooz for your next project at hello@forooz.me</p>
+        <p>© 2024 Forooz.Me - Professional WordPress Developer and Full-Stack Engineer. Specializing in custom web development, WordPress themes, plugins, web applications, and game development. Contact Forooz for your next project at @foroozd on Telegram</p>
       </footer>
 
       <style>{`
