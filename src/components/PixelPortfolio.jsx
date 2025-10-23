@@ -28,6 +28,20 @@ const ForoozMinimal = () => {
       description: "Adopt a ship. Track its journey. Win big.",
       url: "https://ndata-flax.vercel.app/",
       icon: "⛵"
+    },
+    {
+      id: 4,
+      title: "AST Creative Studio",
+      description: "Professional creative design studio",
+      url: "https://studioast.com/",
+      icon: "🎨"
+    },
+    {
+      id: 5,
+      title: "Parvin Etesami Schools Complex Portal",
+      description: "Educational institution management portal",
+      url: "https://myparvin.ir/",
+      icon: "🎓"
     }
   ];
 
