@@ -308,6 +308,9 @@ const ForoozMinimal = () => {
         .card-large {
           grid-column: span 2;
           margin-top: 20px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .icon-container {
