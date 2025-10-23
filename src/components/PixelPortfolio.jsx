@@ -5,6 +5,31 @@ const ForoozMinimal = () => {
   const [projectsCompleted] = useState(12);
   const [yearsExperience] = useState(5);
   const [skillProgress] = useState(85);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const webProjects = [
+    {
+      id: 1,
+      title: "Run & Conquer",
+      description: "Claim territories through running",
+      url: "https://skyrun-alpha.vercel.app/",
+      icon: "🏃"
+    },
+    {
+      id: 2,
+      title: "UK Nominee Director",
+      description: "UK Company Formation for Non-Residents",
+      url: "https://www.companynow.net/",
+      icon: "🏢"
+    },
+    {
+      id: 3,
+      title: "SailFi: Adopt. Track. Win.",
+      description: "Adopt a ship. Track its journey. Win big.",
+      url: "https://ndata-flax.vercel.app/",
+      icon: "⛵"
+    }
+  ];
 
   useEffect(() => {
     document.title = "Forooz - Full-Stack Developer | WordPress Expert | Game Creator";
@@ -224,12 +249,13 @@ const ForoozMinimal = () => {
 
         {/* Forooz Skills Grid */}
         <section className="grid-container skills-grid" aria-label="Forooz Technical Skills">
-          <article className="card" aria-label="Forooz Web Application Development">
+          <article className="card card-clickable" aria-label="Forooz Web Application Development" onClick={() => setSelectedProject('web')}>
             <div className="icon-container" aria-hidden="true">
               <Code size={24} />
             </div>
             <h3 className="card-title">Web Applications by Forooz</h3>
             <p className="card-subtitle">React • Node.js • PHP</p>
+            <p className="card-click-hint">Click to view projects →</p>
           </article>
 
           <article className="card" aria-label="Forooz Game Development">
@@ -245,6 +271,35 @@ const ForoozMinimal = () => {
       <footer role="contentinfo" className="sr-only">
         <p>© 2024 Forooz.Me - Professional WordPress Developer and Full-Stack Engineer. Specializing in custom web development, WordPress themes, plugins, web applications, and game development. Contact Forooz for your next project at @foroozd on Telegram</p>
       </footer>
+
+      {/* Projects Modal */}
+      {selectedProject === 'web' && (
+        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
+            <h2 className="modal-title">Web Applications by Forooz</h2>
+            <div className="projects-list">
+              {webProjects.map((project) => (
+                <a 
+                  key={project.id}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-item"
+                  aria-label={`Visit ${project.title} project`}
+                >
+                  <div className="project-icon">{project.icon}</div>
+                  <div className="project-info">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                  </div>
+                  <ExternalLink size={20} className="project-link-icon" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <style>{`
         * {
@@ -483,6 +538,163 @@ const ForoozMinimal = () => {
 
         .skills-grid {
           margin-top: 20px;
+        }
+
+        .card-clickable {
+          cursor: pointer;
+          position: relative;
+        }
+
+        .card-click-hint {
+          font-size: 12px;
+          color: #999999;
+          margin: 12px 0 0 0;
+          opacity: 0.7;
+          transition: opacity 0.2s ease;
+        }
+
+        .card-clickable:hover .card-click-hint {
+          opacity: 1;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          padding: 20px;
+          animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        .modal-content {
+          background-color: white;
+          border-radius: 24px;
+          padding: 32px;
+          max-width: 600px;
+          width: 100%;
+          max-height: 80vh;
+          overflow-y: auto;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+          position: relative;
+          animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+          from {
+            transform: translateY(30px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .modal-close {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: none;
+          background-color: #f0f0f0;
+          color: #333333;
+          font-size: 24px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+          background-color: #e0e0e0;
+          transform: scale(1.05);
+        }
+
+        .modal-title {
+          font-size: 24px;
+          font-weight: 600;
+          color: #333333;
+          margin: 0 0 24px 0;
+          line-height: 1.2;
+        }
+
+        .projects-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .project-item {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 20px;
+          background-color: #f9f9f9;
+          border-radius: 16px;
+          border: 1px solid #f0f0f0;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          cursor: pointer;
+        }
+
+        .project-item:hover {
+          background-color: #f0f0f0;
+          border-color: #e0e0e0;
+          transform: translateX(4px);
+        }
+
+        .project-icon {
+          font-size: 32px;
+          flex-shrink: 0;
+        }
+
+        .project-info {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .project-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: #333333;
+          margin: 0 0 4px 0;
+          line-height: 1.2;
+        }
+
+        .project-description {
+          font-size: 13px;
+          color: #999999;
+          margin: 0;
+          line-height: 1.3;
+        }
+
+        .project-link-icon {
+          color: #cccccc;
+          flex-shrink: 0;
+          transition: color 0.2s ease;
+        }
+
+        .project-item:hover .project-link-icon {
+          color: #333333;
         }
 
         /* Tablet Responsive (768px and below) */
