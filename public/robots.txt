@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://forooz.me/sitemap.xml
+Sitemap: https://www.forooz.me/sitemap.xml
