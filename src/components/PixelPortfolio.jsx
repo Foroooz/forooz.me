@@ -2,11 +2,12 @@ import { ArrowDownRight, ArrowUpRight, Check, Code2, Github, Layers3, Linkedin, 
 import './PixelPortfolio.css';
 
 const projects = [
-  { index: '01', title: 'Run & Conquer', category: 'Product engineering', description: 'A location-based experience that turns every run into territory, progress, and competition.', stack: ['React', 'Maps', 'Game mechanics'], url: 'https://skyrun-alpha.vercel.app/', accent: 'project-lime' },
-  { index: '02', title: 'Company Now', category: 'Business platform', description: 'A focused company-formation experience designed to turn complex services into a clear journey.', stack: ['WordPress', 'UX', 'Automation'], url: 'https://www.companynow.net/', accent: 'project-blue' },
-  { index: '03', title: 'SailFi', category: 'Web3 product', description: 'An interactive maritime concept where users adopt a ship, follow its journey, and compete.', stack: ['Web3', 'React', 'Product design'], url: 'https://ndata-flax.vercel.app/', accent: 'project-violet' },
-  { index: '04', title: 'AST Studio', category: 'Creative website', description: 'A refined digital home for a creative studio, balancing expressive visuals with clarity.', stack: ['WordPress', 'Responsive UI', 'Performance'], url: 'https://studioast.com/', accent: 'project-orange' },
-  { index: '05', title: 'MyParvin', category: 'Education portal', description: 'A practical digital portal connecting school operations, information, and families.', stack: ['Portal', 'WordPress', 'Information architecture'], url: 'https://myparvin.ir/', accent: 'project-cyan' },
+  { index: '01', title: 'Modirup', category: 'Ongoing SaaS · Partnership', description: 'A restaurant operations SaaS built in partnership to bring daily workflows, staff training, and team accountability into one focused platform.', stack: ['SaaS', 'Product partnership', 'Full-stack'], url: 'https://modirup.com/', accent: 'project-lime' },
+  { index: '02', title: 'Run & Conquer', category: 'Product engineering', description: 'A location-based experience that turns every run into territory, progress, and competition.', stack: ['React', 'Maps', 'Game mechanics'], url: 'https://skyrun-alpha.vercel.app/', accent: 'project-blue' },
+  { index: '03', title: 'Company Now', category: 'Business platform', description: 'A focused company-formation experience designed to turn complex services into a clear journey.', stack: ['WordPress', 'UX', 'Automation'], url: 'https://www.companynow.net/', accent: 'project-violet' },
+  { index: '04', title: 'SailFi', category: 'Web3 product', description: 'An interactive maritime concept where users adopt a ship, follow its journey, and compete.', stack: ['Web3', 'React', 'Product design'], url: 'https://ndata-flax.vercel.app/', accent: 'project-orange' },
+  { index: '05', title: 'AST Studio', category: 'Creative website', description: 'A refined digital home for a creative studio, balancing expressive visuals with clarity.', stack: ['WordPress', 'Responsive UI', 'Performance'], url: 'https://studioast.com/', accent: 'project-cyan' },
+  { index: '06', title: 'MyParvin', category: 'Education portal', description: 'A practical digital portal connecting school operations, information, and families.', stack: ['Portal', 'WordPress', 'Information architecture'], url: 'https://myparvin.ir/', accent: 'project-lime' },
 ];
 
 const services = [
