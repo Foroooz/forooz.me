@@ -1,922 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { Code, Globe, Gamepad2, User, Github, Linkedin, ExternalLink, Send } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Check, Code2, Github, Layers3, Linkedin, Send, Sparkles, TerminalSquare, Workflow } from 'lucide-react';
+import './PixelPortfolio.css';
 
-const ForoozMinimal = () => {
-  const [projectsCompleted] = useState(12);
-  const [yearsExperience] = useState(18);
-  const [skillProgress] = useState(85);
-  const [selectedProject, setSelectedProject] = useState(null);
+const projects = [
+  { index: '01', title: 'Run & Conquer', category: 'Product engineering', description: 'A location-based experience that turns every run into territory, progress, and competition.', stack: ['React', 'Maps', 'Game mechanics'], url: 'https://skyrun-alpha.vercel.app/', accent: 'project-lime' },
+  { index: '02', title: 'Company Now', category: 'Business platform', description: 'A focused company-formation experience designed to turn complex services into a clear journey.', stack: ['WordPress', 'UX', 'Automation'], url: 'https://www.companynow.net/', accent: 'project-blue' },
+  { index: '03', title: 'SailFi', category: 'Web3 product', description: 'An interactive maritime concept where users adopt a ship, follow its journey, and compete.', stack: ['Web3', 'React', 'Product design'], url: 'https://ndata-flax.vercel.app/', accent: 'project-violet' },
+  { index: '04', title: 'AST Studio', category: 'Creative website', description: 'A refined digital home for a creative studio, balancing expressive visuals with clarity.', stack: ['WordPress', 'Responsive UI', 'Performance'], url: 'https://studioast.com/', accent: 'project-orange' },
+  { index: '05', title: 'MyParvin', category: 'Education portal', description: 'A practical digital portal connecting school operations, information, and families.', stack: ['Portal', 'WordPress', 'Information architecture'], url: 'https://myparvin.ir/', accent: 'project-cyan' },
+];
 
-  const webProjects = [
-    {
-      id: 1,
-      title: "Run & Conquer",
-      description: "Claim territories through running",
-      url: "https://skyrun-alpha.vercel.app/",
-      icon: "🏃"
-    },
-    {
-      id: 2,
-      title: "UK Nominee Director",
-      description: "UK Company Formation for Non-Residents",
-      url: "https://www.companynow.net/",
-      icon: "🏢"
-    },
-    {
-      id: 3,
-      title: "SailFi: Adopt. Track. Win.",
-      description: "Adopt a ship. Track its journey. Win big.",
-      url: "https://ndata-flax.vercel.app/",
-      icon: "⛵"
-    },
-    {
-      id: 4,
-      title: "AST Creative Studio",
-      description: "Professional creative design studio",
-      url: "https://studioast.com/",
-      icon: "🎨"
-    },
-    {
-      id: 5,
-      title: "Parvin Etesami Schools Complex Portal",
-      description: "Educational institution management portal",
-      url: "https://myparvin.ir/",
-      icon: "🎓"
-    }
-  ];
+const services = [
+  { icon: Layers3, number: '01', title: 'Product & interface', description: 'Clear product thinking, scalable design systems, and interfaces built around real user goals.' },
+  { icon: Code2, number: '02', title: 'Full-stack development', description: 'Modern, maintainable web applications—from frontend details to APIs and production delivery.' },
+  { icon: Workflow, number: '03', title: 'WordPress engineering', description: 'Custom themes, integrations, performance work, and business workflows beyond page builders.' },
+];
 
-  useEffect(() => {
-    document.title = "Forooz - Full-Stack Developer | WordPress Expert | Game Creator";
-    
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.content = "Forooz - Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation. 18+ years experience building digital solutions.";
+const capabilities = ['React & JavaScript', 'Node.js & APIs', 'WordPress & PHP', 'UI/UX implementation', 'Technical SEO', 'Vercel & deployment', 'Web3 products', 'Automation systems'];
 
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-    canonical.href = 'https://forooz.me';
-
-    const ogTags = [
-      { property: 'og:title', content: 'Forooz - Full-Stack Developer | WordPress Expert' },
-      { property: 'og:description', content: 'Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation. Contact Forooz for your next project.' },
-      { property: 'og:url', content: 'https://forooz.me' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'Forooz.Me' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Forooz - Full-Stack Developer' },
-      { name: 'twitter:description', content: 'Expert WordPress developer and full-stack engineer. Building exceptional digital experiences.' }
-    ];
-
-    ogTags.forEach(tag => {
-      let meta = document.querySelector(`meta[${tag.property ? 'property' : 'name'}="${tag.property || tag.name}"]`);
-      if (!meta) {
-        meta = document.createElement('meta');
-        if (tag.property) meta.setAttribute('property', tag.property);
-        if (tag.name) meta.setAttribute('name', tag.name);
-        document.head.appendChild(meta);
-      }
-      meta.content = tag.content;
-    });
-
-    let structuredData = document.querySelector('script[type="application/ld+json"]');
-    if (!structuredData) {
-      structuredData = document.createElement('script');
-      structuredData.type = 'application/ld+json';
-      document.head.appendChild(structuredData);
-    }
-    
-    structuredData.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Forooz",
-      "url": "https://forooz.me",
-      "sameAs": [
-        "https://github.com/Foroooz",
-        "https://www.linkedin.com/in/forooz/"
-      ],
-      "jobTitle": "Full-Stack Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Forooz.Me"
-      },
-      "knowsAbout": [
-        "WordPress Development",
-        "Full-Stack Development", 
-        "Web Applications",
-        "Game Development",
-        "React",
-        "Node.js",
-        "PHP"
-      ],
-      "email": "@foroozd",
-      "description": "Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation with 18+ years of experience."
-    });
-
-    let keywords = document.querySelector('meta[name="keywords"]');
-    if (!keywords) {
-      keywords = document.createElement('meta');
-      keywords.name = 'keywords';
-      document.head.appendChild(keywords);
-    }
-    keywords.content = "Forooz, Forooz developer, WordPress developer, full-stack developer, web development, game development, React developer, PHP developer, Node.js, @foroozd telegram";
-
-  }, []);
-
-  const handleCardClick = (action) => {
-    switch(action) {
-      case 'portfolio':
-        window.open('#portfolio', '_self');
-        break;
-      case 'contact':
-        window.open('https://t.me/foroozd', '_blank');
-        break;
-      case 'github':
-        window.open('https://github.com/Foroooz', '_blank');
-        break;
-      case 'linkedin':
-        window.open('https://www.linkedin.com/in/forooz/', '_blank');
-        break;
-      default:
-        break;
-    }
-  };
-
+function PixelPortfolio() {
   return (
-    <div className="forooz-container">
-      <h1 className="sr-only">Forooz - Expert Full-Stack Developer and WordPress Specialist</h1>
-      
-      <header role="banner">
-        <div className="sr-only">
-          <p>Welcome to Forooz.Me - Your trusted partner for WordPress development, web applications, and game creation.</p>
-        </div>
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <header className="site-header">
+        <a className="brand" href="#top" aria-label="Forooz — home"><span className="brand-mark" aria-hidden="true">F</span><span>Forooz<span className="brand-dot">.</span></span></a>
+        <nav className="desktop-nav" aria-label="Primary navigation"><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a></nav>
+        <a className="header-cta" href="https://t.me/foroozd" target="_blank" rel="noreferrer">Start a project <ArrowUpRight size={16} aria-hidden="true" /></a>
       </header>
 
-      <main role="main" aria-label="Forooz Portfolio Content">
-        <div className="grid-container">
-          {/* WordPress Development Card */}
-          <article 
-            className="card"
-            onClick={() => handleCardClick('portfolio')}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            aria-label="WordPress Development Services by Forooz"
-            role="button"
-            tabIndex={0}
-          >
-            <div className="icon-container" aria-hidden="true">
-              <Globe size={24} />
+      <main id="main-content">
+        <section className="hero" id="top" aria-labelledby="hero-title">
+          <div className="hero-kicker reveal reveal-1"><span className="availability-dot" aria-hidden="true" />Available for selected projects</div>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <h1 id="hero-title" className="reveal reveal-2">I build digital products that feel <span>considered.</span></h1>
+              <p className="hero-intro reveal reveal-3">I’m <strong>Forooz</strong>, a full-stack developer with 18 years of experience turning complex ideas into fast, focused, and dependable web products.</p>
+              <div className="hero-actions reveal reveal-4">
+                <a className="button button-primary" href="#work">Explore selected work <ArrowDownRight size={18} aria-hidden="true" /></a>
+                <a className="text-link" href="https://github.com/Foroooz" target="_blank" rel="noreferrer">View GitHub <ArrowUpRight size={16} aria-hidden="true" /></a>
+              </div>
             </div>
-            <h2 className="card-title">WordPress Development</h2>
-            <p className="card-subtitle">Custom themes & plugins by Forooz</p>
-          </article>
-
-          {/* Contact Card */}
-          <article 
-            className="card"
-            onClick={() => handleCardClick('contact')}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            aria-label="Contact Forooz"
-            role="button"
-            tabIndex={0}
-          >
-            <div className="icon-container" aria-hidden="true">
-              <Send size={24} />
-            </div>
-            <h2 className="card-title">Contact Forooz</h2>
-            <p className="card-subtitle">@foroozd</p>
-          </article>
-        </div>
-
-        {/* About Forooz Card */}
-        <section className="card card-large" aria-label="About Forooz">
-          <div className="about-header">
-            <div className="about-icon" aria-hidden="true">
-              <User size={20} />
-            </div>
-            <div>
-              <h2 className="about-title">Forooz - Full-Stack Developer</h2>
-              <p className="about-subtitle">Building exceptional digital experiences</p>
-            </div>
+            <aside className="hero-panel reveal reveal-4" aria-label="Professional overview">
+              <div className="code-window">
+                <div className="window-bar"><span /><span /><span /><small>forooz.profile</small></div>
+                <div className="code-body" aria-hidden="true">
+                  <p><span className="code-purple">const</span> developer = {'{'}</p>
+                  <p className="indent">name: <span className="code-green">'Forooz'</span>,</p>
+                  <p className="indent">experience: <span className="code-orange">18</span>,</p>
+                  <p className="indent">focus: [</p><p className="indent-2"><span className="code-green">'product'</span>,</p><p className="indent-2"><span className="code-green">'craft'</span>,</p><p className="indent-2"><span className="code-green">'results'</span></p><p className="indent">],</p>
+                  <p className="indent">status: <span className="code-green">'building'</span></p><p>{'}'};</p>
+                </div>
+              </div>
+              <div className="panel-footer"><div><span className="panel-label">Based in</span><strong>Iran · Working globally</strong></div><Sparkles size={22} aria-hidden="true" /></div>
+            </aside>
           </div>
+          <div className="hero-metrics reveal reveal-4" aria-label="Key metrics">
+            <div><strong>18</strong><span>Years of experience</span></div><div><strong>12+</strong><span>Products delivered</span></div><div><strong>01</strong><span>Careful developer</span></div>
+            <p>Strategy, design sensibility, and engineering discipline—combined in one accountable partner.</p>
+          </div>
+        </section>
 
-          <div className="progress-container">
-            <div className="progress-header">
-              <span className="progress-label">Forooz's Skill Level</span>
-              <span className="progress-value">Expert Developer</span>
-            </div>
-            <div className="progress-bar" role="progressbar" aria-valuenow={skillProgress} aria-valuemin={0} aria-valuemax={100} aria-label="Forooz skill level progress">
-              <div className="progress-fill" style={{ width: `${skillProgress}%` }}></div>
+        <section className="section work-section" id="work" aria-labelledby="work-title">
+          <div className="section-heading"><div><span className="eyebrow">Selected work</span><h2 id="work-title">Built to solve, not just to show.</h2></div><p>A selection of products and websites shaped around usability, business value, and clean execution.</p></div>
+          <div className="project-list">
+            {projects.map((project) => (
+              <a className={`project-row ${project.accent}`} href={project.url} target="_blank" rel="noreferrer" key={project.title} aria-label={`View ${project.title} project`}>
+                <div className="project-meta"><span>{project.index}</span><span>{project.category}</span></div>
+                <div className="project-main"><h3>{project.title}</h3><p>{project.description}</p><ul aria-label={`${project.title} technologies`}>{project.stack.map((item) => <li key={item}>{item}</li>)}</ul></div>
+                <span className="project-arrow" aria-hidden="true"><ArrowUpRight size={24} /></span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="section services-section" id="services" aria-labelledby="services-title">
+          <div className="section-heading light-heading"><div><span className="eyebrow">How I can help</span><h2 id="services-title">From loose idea to reliable product.</h2></div><p>I work best where product decisions and technical decisions need to move together.</p></div>
+          <div className="service-grid">{services.map(({ icon: Icon, number, title, description }) => <article className="service-card" key={title}><div className="service-top"><Icon size={24} aria-hidden="true" /><span>{number}</span></div><h3>{title}</h3><p>{description}</p></article>)}</div>
+          <div className="process-bar">{['Understand', 'Design', 'Build', 'Refine', 'Ship'].map((step, index) => <div key={step}><span>{String(index + 1).padStart(2, '0')}</span>{step}</div>)}</div>
+        </section>
+
+        <section className="section about-section" id="about" aria-labelledby="about-title">
+          <div className="about-grid">
+            <div className="about-sticky"><span className="eyebrow">About Forooz</span><h2 id="about-title">Engineering with business context.</h2></div>
+            <div className="about-content">
+              <p className="about-lead">Good software is more than code that works. It should make the product clearer, the operation simpler, and the next decision easier.</p>
+              <p>I bring 18 years of hands-on experience across WordPress, full-stack development, product interfaces, automation, and emerging web technologies. I communicate directly, challenge weak assumptions early, and stay responsible through delivery.</p>
+              <div className="principles"><div><Check size={18} aria-hidden="true" /><span><strong>Clarity first</strong>Simple decisions beat unnecessary complexity.</span></div><div><Check size={18} aria-hidden="true" /><span><strong>Built to last</strong>Maintainable systems over fragile shortcuts.</span></div><div><Check size={18} aria-hidden="true" /><span><strong>Visible progress</strong>Frequent communication and tangible outcomes.</span></div></div>
+              <div className="capability-block"><h3>Core capabilities</h3><ul>{capabilities.map((item) => <li key={item}>{item}</li>)}</ul></div>
             </div>
           </div>
         </section>
 
-        {/* Forooz Experience Card */}
-        <section className="card card-large" aria-label="Forooz Experience and Social Links">
-          <div className="stats-container">
-            <div>
-              <h2 className="stats-text">{yearsExperience} years experience</h2>
-              <p className="stats-subtext">{projectsCompleted} projects completed by Forooz</p>
-            </div>
-            <div className="stats-icon" aria-hidden="true">
-              <Code size={48} />
-            </div>
-          </div>
-
-          <nav className="social-container" aria-label="Connect with Forooz on social media">
-            <a
-              href="https://github.com/Foroooz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon social-icon-active"
-              aria-label="Forooz on GitHub"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/forooz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon social-icon-active"
-              aria-label="Forooz on LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-            <a
-              href="#portfolio"
-              className="social-icon"
-              aria-label="View Forooz Portfolio"
-            >
-              <ExternalLink size={20} />
-            </a>
-            <span className="contact-text">Connect with Forooz</span>
-          </nav>
-        </section>
-
-        {/* Forooz Skills Grid */}
-        <section className="grid-container skills-grid" aria-label="Forooz Technical Skills">
-          <article className="card card-clickable" aria-label="Forooz Web Application Development" onClick={() => setSelectedProject('web')}>
-            <div className="icon-container" aria-hidden="true">
-              <Code size={24} />
-            </div>
-            <h3 className="card-title">Web Applications by Forooz</h3>
-            <p className="card-subtitle">React • Node.js • PHP</p>
-            <p className="card-click-hint">Click to view projects →</p>
-          </article>
-
-          <article className="card" aria-label="Forooz Game Development">
-            <div className="icon-container" aria-hidden="true">
-              <Gamepad2 size={24} />
-            </div>
-            <h3 className="card-title">Game Development by Forooz</h3>
-            <p className="card-subtitle">HTML5 Canvas • JavaScript</p>
-          </article>
+        <section className="contact-section" aria-labelledby="contact-title">
+          <div className="contact-icon"><TerminalSquare size={30} aria-hidden="true" /></div><span className="eyebrow">Have something ambitious in mind?</span><h2 id="contact-title">Let’s make it real.</h2><p>Tell me what you’re building, where it stands, and what a successful outcome looks like.</p>
+          <a className="button button-light" href="https://t.me/foroozd" target="_blank" rel="noreferrer">Start a conversation <Send size={17} aria-hidden="true" /></a>
         </section>
       </main>
 
-      <footer role="contentinfo" className="sr-only">
-        <p>© 2024 Forooz.Me - Professional WordPress Developer and Full-Stack Engineer. Specializing in custom web development, WordPress themes, plugins, web applications, and game development. Contact Forooz for your next project at @foroozd on Telegram</p>
-      </footer>
-
-      {/* Projects Modal */}
-      {selectedProject === 'web' && (
-        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
-            <h2 className="modal-title">Web Applications by Forooz</h2>
-            <div className="projects-list">
-              {webProjects.map((project) => (
-                <a 
-                  key={project.id}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-item"
-                  aria-label={`Visit ${project.title} project`}
-                >
-                  <div className="project-icon">{project.icon}</div>
-                  <div className="project-info">
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                  </div>
-                  <ExternalLink size={20} className="project-link-icon" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        * {
-          box-sizing: border-box;
-        }
-
-        html, body {
-          margin: 0;
-          padding: 0;
-          width: 100%;
-          height: 100%;
-        }
-
-        .forooz-container {
-          background-color: #ebebeb;
-          min-height: 100vh;
-          width: 100%;
-          padding: 40px 20px;
-          font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-        }
-
-        .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border: 0;
-        }
-
-        .grid-container {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-          max-width: 600px;
-          margin: 0 auto;
-        }
-
-        .card {
-          background-color: white;
-          border-radius: 24px;
-          padding: 32px;
-          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-          border: none;
-          cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-          transform: scale(1.02);
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .card:active {
-          transform: scale(0.98);
-        }
-
-        .card-large {
-          grid-column: span 2;
-          margin-top: 20px;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .icon-container {
-          width: 56px;
-          height: 56px;
-          background-color: #333333;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 20px;
-          color: white;
-        }
-
-        .card-title {
-          font-size: 18px;
-          font-weight: 500;
-          color: #333333;
-          margin-bottom: 8px;
-          line-height: 1.2;
-        }
-
-        .card-subtitle {
-          font-size: 14px;
-          color: #999999;
-          font-weight: 400;
-          margin: 0;
-        }
-
-        .about-header {
-          display: flex;
-          align-items: center;
-          margin-bottom: 24px;
-        }
-
-        .about-icon {
-          width: 48px;
-          height: 48px;
-          background-color: #333333;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 16px;
-          color: white;
-          flex-shrink: 0;
-        }
-
-        .about-title {
-          font-size: 24px;
-          font-weight: 600;
-          color: #333333;
-          margin: 0;
-          line-height: 1.2;
-        }
-
-        .about-subtitle {
-          font-size: 14px;
-          color: #999999;
-          margin: 4px 0 0 0;
-        }
-
-        .progress-container {
-          margin-top: 32px;
-        }
-
-        .progress-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 16px;
-        }
-
-        .progress-label {
-          font-size: 16px;
-          font-weight: 500;
-          color: #333333;
-        }
-
-        .progress-value {
-          font-size: 16px;
-          font-weight: 500;
-          color: #333333;
-        }
-
-        .progress-bar {
-          width: 100%;
-          height: 12px;
-          background-color: #e5e5e5;
-          border-radius: 6px;
-          overflow: hidden;
-        }
-
-        .progress-fill {
-          height: 100%;
-          background-color: #333333;
-          border-radius: 6px;
-          transition: width 0.3s ease;
-        }
-
-        .stats-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 32px;
-        }
-
-        .stats-text {
-          font-size: 26px;
-          font-weight: 600;
-          color: #333333;
-          margin: 0;
-        }
-
-        .stats-subtext {
-          font-size: 14px;
-          color: #999999;
-          margin: 8px 0 0 0;
-        }
-
-        .stats-icon {
-          width: 48px;
-          height: 48px;
-          color: #cccccc;
-          flex-shrink: 0;
-        }
-
-        .social-container {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .social-icon {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          background-color: #f0f0f0;
-          color: #666666;
-          text-decoration: none;
-          flex-shrink: 0;
-        }
-
-        .social-icon:hover {
-          transform: scale(1.05);
-        }
-
-        .social-icon:active {
-          transform: scale(0.95);
-        }
-
-        .social-icon-active {
-          background-color: #333333;
-          color: white;
-        }
-
-        .contact-text {
-          font-size: 16px;
-          font-weight: 500;
-          color: #333333;
-          margin-left: 12px;
-          white-space: nowrap;
-        }
-
-        .skills-grid {
-          margin-top: 20px;
-        }
-
-        .card-clickable {
-          cursor: pointer;
-          position: relative;
-        }
-
-        .card-click-hint {
-          font-size: 12px;
-          color: #999999;
-          margin: 12px 0 0 0;
-          opacity: 0.7;
-          transition: opacity 0.2s ease;
-        }
-
-        .card-clickable:hover .card-click-hint {
-          opacity: 1;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.6);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-          padding: 20px;
-          animation: fadeIn 0.2s ease;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .modal-content {
-          background-color: white;
-          border-radius: 24px;
-          padding: 32px;
-          max-width: 600px;
-          width: 100%;
-          max-height: 80vh;
-          overflow-y: auto;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-          position: relative;
-          animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-          from {
-            transform: translateY(30px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-
-        .modal-close {
-          position: absolute;
-          top: 16px;
-          right: 16px;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: none;
-          background-color: #f0f0f0;
-          color: #333333;
-          font-size: 24px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.2s ease;
-        }
-
-        .modal-close:hover {
-          background-color: #e0e0e0;
-          transform: scale(1.05);
-        }
-
-        .modal-title {
-          font-size: 24px;
-          font-weight: 600;
-          color: #333333;
-          margin: 0 0 24px 0;
-          line-height: 1.2;
-        }
-
-        .projects-list {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .project-item {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          padding: 20px;
-          background-color: #f9f9f9;
-          border-radius: 16px;
-          border: 1px solid #f0f0f0;
-          text-decoration: none;
-          transition: all 0.2s ease;
-          cursor: pointer;
-        }
-
-        .project-item:hover {
-          background-color: #f0f0f0;
-          border-color: #e0e0e0;
-          transform: translateX(4px);
-        }
-
-        .project-icon {
-          font-size: 32px;
-          flex-shrink: 0;
-        }
-
-        .project-info {
-          flex: 1;
-          min-width: 0;
-        }
-
-        .project-title {
-          font-size: 16px;
-          font-weight: 600;
-          color: #333333;
-          margin: 0 0 4px 0;
-          line-height: 1.2;
-        }
-
-        .project-description {
-          font-size: 13px;
-          color: #999999;
-          margin: 0;
-          line-height: 1.3;
-        }
-
-        .project-link-icon {
-          color: #cccccc;
-          flex-shrink: 0;
-          transition: color 0.2s ease;
-        }
-
-        .project-item:hover .project-link-icon {
-          color: #333333;
-        }
-
-        /* Tablet Responsive (768px and below) */
-        @media (max-width: 768px) {
-          .forooz-container {
-            padding: 32px 16px;
-          }
-
-          .grid-container {
-            gap: 16px;
-            max-width: 100%;
-          }
-
-          .card {
-            padding: 28px;
-          }
-
-          .card-large {
-            padding: 28px;
-          }
-
-          .about-title {
-            font-size: 22px;
-          }
-
-          .stats-text {
-            font-size: 24px;
-          }
-
-          .progress-label,
-          .progress-value {
-            font-size: 15px;
-          }
-        }
-
-        /* Mobile Responsive (640px and below) */
-        @media (max-width: 640px) {
-          .forooz-container {
-            padding: 24px 16px;
-          }
-
-          .grid-container {
-            grid-template-columns: 1fr;
-            gap: 16px;
-            max-width: 100%;
-          }
-
-          .card-large {
-            grid-column: span 1;
-            margin-top: 16px;
-          }
-
-          .card {
-            padding: 24px;
-            border-radius: 20px;
-          }
-
-          .icon-container {
-            width: 52px;
-            height: 52px;
-            margin-bottom: 16px;
-          }
-
-          .card-title {
-            font-size: 17px;
-            margin-bottom: 6px;
-          }
-
-          .card-subtitle {
-            font-size: 13px;
-          }
-
-          .about-header {
-            margin-bottom: 20px;
-          }
-
-          .about-icon {
-            width: 44px;
-            height: 44px;
-            margin-right: 12px;
-            border-radius: 10px;
-          }
-
-          .about-title {
-            font-size: 20px;
-            margin-bottom: 4px;
-          }
-
-          .about-subtitle {
-            font-size: 13px;
-          }
-
-          .progress-container {
-            margin-top: 24px;
-          }
-
-          .progress-header {
-            margin-bottom: 12px;
-          }
-
-          .progress-label,
-          .progress-value {
-            font-size: 14px;
-          }
-
-          .progress-bar {
-            height: 10px;
-          }
-
-          .stats-container {
-            margin-bottom: 24px;
-          }
-
-          .stats-text {
-            font-size: 22px;
-          }
-
-          .stats-subtext {
-            font-size: 13px;
-          }
-
-          .stats-icon {
-            width: 44px;
-            height: 44px;
-          }
-
-          .social-container {
-            gap: 10px;
-          }
-
-          .social-icon {
-            width: 44px;
-            height: 44px;
-          }
-
-          .contact-text {
-            font-size: 14px;
-            margin-left: 8px;
-          }
-
-          .skills-grid {
-            margin-top: 16px;
-          }
-        }
-
-        /* Small Mobile (480px and below) */
-        @media (max-width: 480px) {
-          .forooz-container {
-            padding: 20px 12px;
-          }
-
-          .grid-container {
-            gap: 14px;
-          }
-
-          .card {
-            padding: 20px;
-            border-radius: 18px;
-          }
-
-          .icon-container {
-            width: 48px;
-            height: 48px;
-          }
-
-          .card-title {
-            font-size: 16px;
-          }
-
-          .card-subtitle {
-            font-size: 12px;
-          }
-
-          .about-icon {
-            width: 40px;
-            height: 40px;
-          }
-
-          .about-title {
-            font-size: 18px;
-          }
-
-          .stats-text {
-            font-size: 20px;
-          }
-
-          .stats-icon {
-            width: 40px;
-            height: 40px;
-          }
-
-          .social-icon {
-            width: 40px;
-            height: 40px;
-          }
-
-          .contact-text {
-            display: none;
-          }
-
-          .social-container {
-            gap: 8px;
-            margin-left: 8px;
-          }
-        }
-      `}</style>
+      <footer className="site-footer"><a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true">F</span><span>Forooz<span className="brand-dot">.</span></span></a><p>Independent full-stack developer building thoughtful digital products.</p><div className="footer-links"><a href="https://github.com/Forooz" target="_blank" rel="noreferrer" aria-label="Forooz on GitHub"><Github size={18} /></a><a href="https://www.linkedin.com/in/forooz/" target="_blank" rel="noreferrer" aria-label="Forooz on LinkedIn"><Linkedin size={18} /></a><a href="https://t.me/foroozd" target="_blank" rel="noreferrer" aria-label="Contact Forooz on Telegram"><Send size={18} /></a></div><small>© {new Date().getFullYear()} Forooz. All rights reserved.</small></footer>
     </div>
   );
-};
+}
 
-export default ForoozMinimal;
+export default PixelPortfolio;
