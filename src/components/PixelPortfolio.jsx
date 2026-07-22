@@ -3,7 +3,7 @@ import { Code, Globe, Gamepad2, User, Github, Linkedin, ExternalLink, Send } fro
 
 const ForoozMinimal = () => {
   const [projectsCompleted] = useState(12);
-  const [yearsExperience] = useState(5);
+  const [yearsExperience] = useState(18);
   const [skillProgress] = useState(85);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -54,7 +54,7 @@ const ForoozMinimal = () => {
       metaDescription.name = 'description';
       document.head.appendChild(metaDescription);
     }
-    metaDescription.content = "Forooz - Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation. 5+ years experience building digital solutions.";
+    metaDescription.content = "Forooz - Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation. 18+ years experience building digital solutions.";
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -117,7 +117,7 @@ const ForoozMinimal = () => {
         "PHP"
       ],
       "email": "@foroozd",
-      "description": "Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation with 5+ years of experience."
+      "description": "Expert Full-Stack Developer specializing in WordPress development, web applications, and game creation with 18+ years of experience."
     });
 
     let keywords = document.querySelector('meta[name="keywords"]');
